@@ -20,10 +20,6 @@ public class Carro implements Runnable {
         return tempo;
     }
 
-    public void setTempo(Instant tempo) {
-        this.tempo = tempo;
-    }
-
     @Override
     public void run() {
         int minimo = 500;
