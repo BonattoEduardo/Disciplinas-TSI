@@ -14,15 +14,13 @@ public class ExemploThread {
 
         threads.forEach(Thread::start);
 
-        threads.get(0).join();
-
-        // threads.forEach(t -> {
-        //     try {
-        //         t.join();
-        //     } catch (InterruptedException e) {
-        //         e.printStackTrace();
-        //     }
-        // });
+        threads.forEach(t -> {
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
 
         System.out.println("Fim");
     }
