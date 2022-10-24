@@ -1,3 +1,0 @@
-# Disciplinas-TSI
-
-**asdasdasd**
