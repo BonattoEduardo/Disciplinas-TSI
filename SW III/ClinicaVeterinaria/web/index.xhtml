@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h2>Marcação de Consultas - Veterinária Bicho BÃO</h2>
+        
+        <br />
+        <h:form>
+            <p:commandButton
+                value="Cadastrar Tipos de Animal"
+                action="cadastroTipoAnimal"
+            />
+        </h:form>
+        <br />
+        <h:form>
+            <p:commandButton
+                value="Cadastrar Veterinários"
+                action="cadastroVeterinario"
+            />
+        </h:form>
+        <br />
+        
+        <h:messages
+            globalOnly="true"
+            style="padding: 0"
+            warnStyle="padding: 10px; border: 1px solid rgb(255 152 0);
+                width: 250px; background: rgb(255 152 0 / 10%);
+                list-style: none; border-radius: 8px;"
+            errorStyle="padding: 10px; border: 1px solid rgb(205 10 10);
+                width: 250px; background: rgb(205 10 10 / 10%);
+                list-style: none; border-radius: 8px;"
+            infoStyle="padding: 10px; border: 1px solid rgb(76 175 80);
+                width: 250px; background: rgb(76 175 80 / 10%);
+                list-style: none; border-radius: 8px;"
+        />
+        
+        <h:form>
+            <p:panelGrid columns="2" id="pnlForm">
+                <p:outputLabel for="edTipo" value="Tipo de Animal" />
+                <p:selectOneMenu
+                    value="#{marcacaoConsultaBean.consulta.tipoAnimal}"
+                    required="true"
+                    requiredMessage="Selecione o tipo de animal"
+                    converter="#{tipoAnimalConverter}"
+                    id="edTipo"
+                >
+                    <p:ajax event="change" update="edVet"/>
+                    <f:selectItems value="#{marcacaoConsultaBean.tiposItens}" />
+                </p:selectOneMenu>
+                <p:outputLabel for="edVet" value="Veterinário" />
+                <p:selectOneMenu
+                    value="#{marcacaoConsultaBean.consulta.veterinario}"
+                    required="true"
+                    requiredMessage="Selecione o veterinario"
+                    converter="#{veterinarioConverter}"
+                    id="edVet"
+                >
+                    <f:selectItems value="#{marcacaoConsultaBean.veterinariosItens}" />
+                </p:selectOneMenu>
+                <p:outputLabel for="edTutor" value="Tutor" />
+                <p:inputText
+                    id="edTutor"
+                    required="true"
+                    requiredMessage="Informe o nome do tutor"
+                    value="#{marcacaoConsultaBean.consulta.nomeTutor}"
+                />
+                <p:outputLabel for="edAnimal" value="Nome do animal" />
+                <p:inputText
+                    id="edAnimal"
+                    required="true"
+                    requiredMessage="Informe o nome do animal"
+                    value="#{marcacaoConsultaBean.consulta.nomeAnimal}"
+                />
+                <p:outputLabel for="edMotivo" value="Motivo" />
+                <p:inputText
+                    id="edMotivo"
+                    required="true"
+                    requiredMessage="Informe o motivo da consulta"
+                    value="#{marcacaoConsultaBean.consulta.motivo}"
+                />
+                <p:outputLabel for="edTelefone" value="Telefone do Tutor" />
+                <p:inputText
+                    id="edTelefone"
+                    required="true"
+                    requiredMessage="Informe o telefone do tutor"
+                    value="#{marcacaoConsultaBean.consulta.telefoneTutor}"
+                />
+                <p:outputLabel for="edData" value="Data/hora" />
+                <p:calendar
+                    id="edData"
+                    required="true"
+                    requiredMessage="Informe a data da consulta"
+                    value="#{marcacaoConsultaBean.consulta.dataHora}"
+                    locale="br"
+                    pattern="dd/MM/yyyy HH:mm"
+                    stepMinute="15"
+                    validator="dateValidator"
+                />
+            </p:panelGrid>
+            
+            <p:commandButton
+                value="Marcar"
+                ajax="false"
+                action="#{marcacaoConsultaBean.marcar}"
+            />
+            
+            <p:commandButton
+                value="Limpar"
+                action="#{marcacaoConsultaBean.limpar}"
+                immediate="true"
+                ajax="false"
+            > 
+                <p:resetInput target="pnlForm"/>
+            </p:commandButton>
+        </h:form>
+        
+        <br />
+        
+        <p:dataTable
+            id="tabConsultas"
+            value="#{consultaBean.consultaDAO.consultas}"
+            var="consulta"
+        >
+            <p:column headerText="Data/hora">
+                <h:outputText value="#{consulta.dataHora}"/>
+            </p:column>
+            <p:column headerText="Veterinário">
+                <h:outputText value="#{consulta.veterinario.nome}" />
+            </p:column>
+            <p:column headerText="Tipo de animal">
+                <h:outputText value="#{consulta.tipoAnimal.tipo}" />
+            </p:column>
+            <p:column headerText="Nome do animal">
+                <h:outputText value="#{consulta.nomeAnimal}" />
+            </p:column>
+            <p:column headerText="Tutor">
+                <h:outputText value="#{consulta.nomeTutor}" />
+            </p:column>
+            <p:column headerText="Motivo">
+                <h:outputText value="#{consulta.motivo}" />
+            </p:column>
+            <p:column headerText="Telefone">
+                <h:outputText value="#{consulta.telefoneTutor}" />
+            </p:column>
+            <p:column headerText="Ações">
+                <h:form style="display: inline-block">
+                    <p:commandButton
+                        value="Cancelar"
+                        ajax="false"
+                        action="#{marcacaoConsultaBean.desmarcar(consulta)}"
+                    />
+                </h:form>
+            </p:column>
+        </p:dataTable>
+    </h:body>
+</html>
+
