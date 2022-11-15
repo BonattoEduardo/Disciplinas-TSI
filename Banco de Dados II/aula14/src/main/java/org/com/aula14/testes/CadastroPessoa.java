@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 
 import org.com.aula14.dao.PessoaDAO;
 import org.com.aula14.model.Pessoa;
+import org.com.aula14.util.JPAUtil;
 
 public class CadastroPessoa {
     public static void main(String[] args) {
