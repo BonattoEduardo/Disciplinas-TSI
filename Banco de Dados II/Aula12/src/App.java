@@ -10,7 +10,7 @@ public class App {
             conn = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/teste",
                 "root",
-                ""
+                "root"
             );
 
             System.out.println("Conectado");
