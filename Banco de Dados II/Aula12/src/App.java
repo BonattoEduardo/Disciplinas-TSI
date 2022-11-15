@@ -13,6 +13,8 @@ public class App {
                 "root"
             );
 
+            conn.close();
+
             System.out.println("Conectado");
             
         } catch (SQLException e) {
