@@ -1,4 +1,4 @@
-package org.com.aula14.testes;
+package org.com.aula14.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
