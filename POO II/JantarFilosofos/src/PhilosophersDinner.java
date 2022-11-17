@@ -13,11 +13,6 @@ public class PhilosophersDinner {
 
     public PhilosophersDinner() {
         table = new Table(Arrays.asList(
-            // new Fork(0),
-            // new Fork(1),
-            // new Fork(2),
-            // new Fork(3),
-            // new Fork(4)
             new Fork(),
             new Fork(),
             new Fork(),
