@@ -14,19 +14,12 @@ public class Table {
     }
 
     public void putFork(int id, Fork fork) {
-        // fork.setUsed(false);
         forks.set(id, fork);
     }
 
     public Fork getFork(int id) {
-        // for (Fork fork : forks) {
-        //     if (fork.getId() == id) {
-        //         fork.setUsed(true);
-        //         return fork;
-        //     }
-        // }
         Fork fork = forks.get(id);
-        // forks.set(id, null);
+        forks.set(id, null);
 
         return fork;
     }

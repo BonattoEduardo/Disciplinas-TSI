@@ -54,24 +54,15 @@ public class Philosopher implements Runnable {
         this.state = State.TAKING_FORKS;
         System.out.println(getName() + " está pegando os garfos");
         
-        Fork forkLeft = table.getFork(getIdForkLeft());
-        Fork forkRight = table.getFork(getIdForkRight());
+        Fork forkLeft = null;
+        Fork forkRight = null;
 
-        // if (idForkLeft % 2 == 0) {
-        //     while (forkLeft == null) {
-        //         forkLeft = table.getFork(idForkLeft);
-        //     }
-        //     while (forkRight == null) {
-        //         forkRight = table.getFork(idForkRight);
-        //     }
-        // } else {
-        //     while (forkRight == null) {
-        //         forkRight = table.getFork(idForkRight);
-        //     }
-        //     while (forkLeft == null) {
-        //         forkLeft = table.getFork(idForkLeft);
-        //     }
-        // }
+        while (forkLeft == null) {
+            forkLeft = table.getFork(idForkLeft);
+        }
+        while (forkRight == null) {
+            forkRight = table.getFork(idForkRight);
+        }
 
         this.state = State.EATING;
         System.out.println(getName() + " está comendo");
