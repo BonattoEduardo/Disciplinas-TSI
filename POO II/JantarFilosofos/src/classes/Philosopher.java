@@ -68,7 +68,7 @@ public class Philosopher implements Runnable {
         System.out.println(getName() + " está comendo");
         
         try {
-            Thread.sleep(1000 * 10);
+            Thread.sleep(1);
         } catch (InterruptedException e) {
             System.out.println(getName() + " comeu demais");
         }
@@ -82,7 +82,7 @@ public class Philosopher implements Runnable {
         System.out.println(getName() + " está pensando");
 
         try {
-            Thread.sleep(1000 * 10);
+            Thread.sleep(1);
         } catch (InterruptedException e) {
             System.out.println(getName() + " pensou demais");
         }

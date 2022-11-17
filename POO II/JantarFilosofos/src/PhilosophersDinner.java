@@ -21,7 +21,7 @@ public class PhilosophersDinner {
         ));
 
         philosophers = Arrays.asList(
-            new Philosopher("Aristóteles", table, 0, 1),
+            new Philosopher("Aristóteles", table, 1, 0),
             new Philosopher("Platão", table, 1, 2),
             new Philosopher("Sócrates", table, 2, 3),
             new Philosopher("Tales", table, 3, 4),

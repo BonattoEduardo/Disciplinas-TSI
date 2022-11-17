@@ -4,8 +4,10 @@ public class App {
         PhilosophersDinner pd = new PhilosophersDinner();
         pd.go();
 
-        Thread.sleep(1000 * 60 * 5);
+        Thread.sleep(1000 * 30);
         
         pd.stop();
+
+        System.out.println("fim");
     }
 }
