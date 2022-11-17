@@ -14,6 +14,7 @@ public class Beeper {
             int i = 0;
             public void run() {
                 System.out.println("beep_" + ++i);
+                System.out.printf("\07");
             }
         };
         
