@@ -9,7 +9,7 @@ public class MainA {
     
     public static void main(String[] args) {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("src/LFT_2022.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("src/LFT_2022.tsv"));
             Scanner scanner = new Scanner(br);
 
             while (scanner.hasNextLine()) {

@@ -21,25 +21,26 @@ public class Cotacao implements Serializable {
     public Cotacao(String dia, String taxaCompraManha, String taxaVenda, String puCompraManha, String puVendaManha,
             String puBaseManha) {
         this.dia = dia;
-        this.taxaCompraManha = Double.parseDouble(taxaCompraManha.replaceAll("[^0-9.]", ""));
-        this.taxaVenda = Double.parseDouble(taxaVenda.replaceAll("[^0-9.]", ""));
-        this.puCompraManha = Double.parseDouble(puCompraManha.replaceAll("[^0-9.]", ""));
-        this.puVendaManha = Double.parseDouble(puVendaManha.replaceAll("[^0-9.]", ""));
-        this.puBaseManha = Double.parseDouble(puBaseManha.replaceAll("[^0-9.]", ""));
+        this.taxaCompraManha = parseDouble(taxaCompraManha);
+        this.taxaVenda = parseDouble(taxaVenda);
+        this.puCompraManha = parseDouble(puCompraManha);
+        this.puVendaManha = parseDouble(puVendaManha);
+        this.puBaseManha = parseDouble(puBaseManha);
     }
 
     public static void main(String[] args) {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("src/LFT_2022.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("src/LFT_2022.tsv"));
             Scanner scanner = new Scanner(br);
 
-            Cotacao.vencimento = scanner.nextLine().split(",")[1];
+            Cotacao.vencimento = scanner.nextLine().split("\t")[1];
             scanner.nextLine(); // Pulando o cabeçalho
 
             List<Cotacao> cotacoes = new ArrayList<>();
 
             while (scanner.hasNextLine()) {
-                String[] itens = scanner.nextLine().split(",");
+                
+                String[] itens = scanner.nextLine().split("\t");
                 Cotacao cot = new Cotacao(itens[0], itens[1], itens[2], itens[3], itens[4], itens[5]);
                 cotacoes.add(cot);
             }
@@ -52,15 +53,15 @@ public class Cotacao implements Serializable {
             oos.flush();
             oos.close();
         } catch (Exception e) {
-            System.out.println("Arquivo não encontrado");
+            System.out.println("Erro: " + e.toString());
         }
     }
 
-    @Override
-    public String toString() {
-        return "Cotacao [dia=" + dia + ", taxaCompraManha=" + taxaCompraManha + ", taxaVenda=" + taxaVenda
-                + ", puCompraManha=" + puCompraManha + ", puVendaManha=" + puVendaManha + ", puBaseManha=" + puBaseManha
-                + "]";
+    private double parseDouble(String str) {
+        str = str.replaceAll("\\.", "")
+                 .replaceAll(",", ".")
+                 .replaceAll("[^0-9.,]", "");
+        return Double.parseDouble(str);
     }
 
     public static String getVencimento() {
@@ -91,5 +92,10 @@ public class Cotacao implements Serializable {
         return puBaseManha;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Cotacao [dia=" + dia + ", taxaCompraManha=" + taxaCompraManha + ", taxaVenda=" + taxaVenda
+                + ", puCompraManha=" + puCompraManha + ", puVendaManha=" + puVendaManha + ", puBaseManha=" + puBaseManha
+                + "]";
+    }
 }
