@@ -3,5 +3,6 @@
         "lib/**/*.jar",
         "c:\\Users\\edubo\\Downloads\\mysql-connector-j-8.0.31\\mysql-connector-j-8.0.31.jar"
     ],
-    "java.dependency.packagePresentation": "hierarchical"
+    "java.dependency.packagePresentation": "hierarchical",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
