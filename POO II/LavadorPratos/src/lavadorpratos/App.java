@@ -1,19 +1,32 @@
 package lavadorpratos;
 
 public class App {
+    private static final Escorredor escorredor = new Escorredor(10);
+    private static final Lavador lavador = new Lavador(escorredor);
+    private static final Enxugador enxugador = new Enxugador(escorredor);
+    private static final Thread threadLavador = new Thread(lavador);
+    private static final Thread threadEnxugador = new Thread(enxugador);
     
     public static void main(String[] args) {
-        // List<Prato> pratos = new ArrayList<>();
-        // for (int i = 0; i < 100; i++) {
-        //     pratos.add(new Prato());
-        // }
+        work();
 
-        // long baixos = pratos.stream().filter(p -> p.getNivelSugeira() == NivelSugeira.BAIXO).count();
-        // long medios = pratos.stream().filter(p -> p.getNivelSugeira() == NivelSugeira.MEDIO).count();
-        // long engs = pratos.stream().filter(p -> p.getNivelSugeira() == NivelSugeira.ENGORDURADO).count();
+        try {
+            Thread.sleep(1000 * 60 * 2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        // System.out.println("Baixos: " + baixos);
-        // System.out.println("Médios: " + medios);
-        // System.out.println("Engordurados: " + engs);
+        stop();
     }
+
+    public static void work() {
+        threadLavador.start();
+        threadEnxugador.start();
+    }
+
+    public static void stop() {
+        lavador.finalizar();
+        enxugador.finalizar();
+    }
+
 }

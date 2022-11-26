@@ -23,7 +23,7 @@ public class Escorredor {
         }
 
         if (cont == tamanho) {
-            System.out.println("O escorredor está cheio");
+            System.out.println("O escorredor está cheio. Total de pratos: " + cont);
         }
         if (posicaoColocar == tamanho) {
             posicaoColocar = 0;
@@ -40,7 +40,7 @@ public class Escorredor {
         }
 
         if (cont == 0) {
-            System.out.println("O escorredor está vazio");
+            System.out.println("O escorredor está vazio. Total de pratos: " + cont);
         }
         if (posicaoTirar == tamanho) {
             posicaoTirar = 0;
@@ -50,7 +50,7 @@ public class Escorredor {
     }
 
     public boolean vazio() {
-        return cont == 0  ;
+        return cont == 0;
     }
     
     public boolean cheio() {
