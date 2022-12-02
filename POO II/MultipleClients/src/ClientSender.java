@@ -1,17 +1,16 @@
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
 
-public class ClientInput implements Runnable {
+public class ClientSender implements Runnable {
     private BufferedReader userInput;
-    private DataInputStream dataInput;
     private DataOutputStream dataOutput;
 
-    public ClientInput(BufferedReader userInput, DataInputStream dataInput, DataOutputStream dataOutput) {
-        this.userInput = userInput;
-        this.dataInput = dataInput;
-        this.dataOutput = dataOutput;
+    public ClientSender(Socket socket) throws IOException {
+      this.userInput = new BufferedReader(new InputStreamReader(System.in));
+      this.dataOutput = new DataOutputStream(socket.getOutputStream());
     }
 
     @Override
@@ -25,6 +24,13 @@ public class ClientInput implements Runnable {
             } catch (IOException i) {
               System.out.println(i);
             }
+        }
+
+        try {
+          userInput.close();
+          dataOutput.close();
+        } catch (IOException e) {
+          System.out.println(e);
         }
     }
     
